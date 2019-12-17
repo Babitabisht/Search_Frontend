@@ -1,0 +1,109 @@
+<div class="topnav">
+  <div class="search-container">
+    <!-- Provide the QueryParamGroup somewhere on a parent element using queryParamGroup. -->
+    <ng-container [queryParamGroup]="paramGroup">
+      <!-- Use the queryParamName directive to reference a specific param of your group. -->
+      <input type="text" placeholder="Search" queryParamName="searchText" />
+    </ng-container>
+  </div>
+  <div class="otherLink">
+    <a href="#home">History</a>
+    <a href="#about">Logout</a>
+  </div>
+</div>
+
+<div>
+  <div>
+    <span>search</span>
+    <div class="btn-group">
+      <button
+        class="btn  btn-sm dropdown-toggle"
+        type="button"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        All
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Stories </a>
+        <a class="dropdown-item" href="#">Comments</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </div>
+    <span>By</span>
+    <div class="btn-group">
+      <button
+        class="btn  btn-sm dropdown-toggle"
+        type="button"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        Small button
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Popularity</a>
+        <a class="dropdown-item" href="#">Date</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </div>
+    <span>for</span>
+    <div class="btn-group">
+      <button
+        class="btn  btn-sm dropdown-toggle"
+        type="button"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        Small button
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">All time</a>
+        <a class="dropdown-item" href="#">Last 24h</a>
+        <a class="dropdown-item" href="#">Past Week</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" class="content">
+  <!-- <ul>
+    <li *ngFor="let item of hitsResult; let i = index">
+      <span *ngIf="item.author">{{ item.author }}</span>
+    </li>
+  </ul> -->
+
+  <table>
+    <tr *ngFor="let item of hitsResult; let i = index">
+      <td *ngIf="item.author">
+        <b class="title"> {{ item.title }}</b>
+        <span>
+          <a class="links" href="item.url">( {{ item.url }} )</a>
+        </span>
+        <br />
+        <div class="details">
+          <span> {{ item.points }} points </span>
+          <span class="Story_separator">|</span>
+          <span> {{ item.author }}</span>
+          <span class="Story_separator">|</span>
+          <span> {{ item.created_at_i | date }}</span
+          ><span class="Story_separator">|</span>
+          <span> {{ item.num_comments }} comments</span>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <div *ngIf="showMessage" class="text-center">
+    <div class="card">
+      <div class="card-body">
+        <!-- <h5 class="card-title">Card title</h5> -->
+        <p class="card-text">
+          We found no stories matching Suggestions:
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,11 +11,11 @@ import { AlgoliaResponse } from "../algolia-response";
   styleUrls: ["./search.component.css"]
 })
 export class SearchComponent implements OnInit {
-  // public todoItems: TodoItem[] = [];
+  public pageOfItems;
   public paramGroup: QueryParamGroup;
   public hitsResult: AlgoliaResponse[] = [];
   public showMessage: Boolean = false;
-
+  items = [];
   constructor(
     private http: HttpClient,
     private algoService: AlgoliaAPIsService,
@@ -25,6 +25,13 @@ export class SearchComponent implements OnInit {
       searchText: qpb.stringParam("query", {
         debounceTime: 250
       }),
+      type: qpb.stringParam("type", {
+        debounceTime: 250
+      }),
+      // page: qpb.stringParam("page", {
+      //   debounceTime: 250
+      // }),
+
       showCompletedItems: qpb.booleanParam("status", {
         serialize: completed => (completed ? "completed" : null),
         deserialize: value => value === "completed"
@@ -37,10 +44,7 @@ export class SearchComponent implements OnInit {
     this.paramGroup.valueChanges
       .pipe(
         switchMap(value =>
-          this.algoService.searchbyQuery(
-            value.searchText,
-            value.showCompletedItems
-          )
+          this.algoService.searchbyQuery(value.searchText, value.type)
         )
       )
       .subscribe(results => {
@@ -54,5 +58,14 @@ export class SearchComponent implements OnInit {
 
         console.log("---results----", results.hits);
       });
+
+    this.items = Array(150)
+      .fill(0)
+      .map((x, i) => ({ id: i + 1, name: `Item ${i + 1}` }));
+  }
+
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    this.pageOfItems = pageOfItems;
   }
 }

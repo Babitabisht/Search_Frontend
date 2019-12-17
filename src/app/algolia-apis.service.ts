@@ -8,12 +8,17 @@ import { AlgoliaResponse } from "../app/algolia-response";
 export class AlgoliaAPIsService {
   constructor(private http: HttpClient) {}
 
-  searchbyQuery(searchText: String, showCompletedItems: String) {
+  searchbyQuery(searchText: String, type: String) {
     console.log(
       "------------------------searchText-------------------",
       searchText,
-      showCompletedItems
+      type
     );
+
+    // if (page == undefined || page == null) {
+    //   page = 0;
+    // }
+
     const httpOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
@@ -22,7 +27,9 @@ export class AlgoliaAPIsService {
     };
     console.log(appConfig.a1 + "?query=" + searchText);
 
-    return this.http.get<any>(appConfig.a1 + "?query=" + searchText);
+    return this.http.get<any>(
+      appConfig.a1 + "?query=" + searchText + "&tags=" + type
+    );
   }
 }
 

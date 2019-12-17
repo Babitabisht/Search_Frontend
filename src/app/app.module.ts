@@ -10,7 +10,8 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { HttpClientModule } from "@angular/common/http";
 import { AlertComponent } from "./alert/alert.component";
 import { QueryParamModule } from "@ngqp/core";
-import { SearchComponent } from './search/search.component';
+import { SearchComponent } from "./search/search.component";
+import { JwPaginationComponent } from "jw-angular-pagination";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SearchComponent } from './search/search.component';
     SignupComponent,
     DashboardComponent,
     AlertComponent,
-    SearchComponent
+    SearchComponent,
+    JwPaginationComponent
   ],
   imports: [
     BrowserModule,

@@ -13,59 +13,30 @@
 </div>
 
 <div>
-  <div>
-    <span>search</span>
-    <div class="btn-group">
-      <button
-        class="btn  btn-sm dropdown-toggle"
-        type="button"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
-      >
-        All
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Stories </a>
-        <a class="dropdown-item" href="#">Comments</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-      </div>
+  <ng-container [queryParamGroup]="paramGroup">
+    <div>
+      <span>search</span>
+      <select queryParamName="type">
+        <option value="poll">poll</option>
+        <option value="story">Stories</option>
+        <option value="comment">Comments</option>
+      </select>
+      <span>By</span>
+
+      <select queryParamName="type">
+        <option value="front_page">front page Stories</option>
+        <option value="">Last stories</option>
+        <option value="">Last polls</option>
+      </select>
+
+      <!-- <span>for</span>
+      <select queryParamName="dateRange">
+        <option value="all">All time</option>
+        <option value="last24h">Last 24h</option>
+        <option value="pastWeek">Past Week</option>
+      </select> -->
     </div>
-    <span>By</span>
-    <div class="btn-group">
-      <button
-        class="btn  btn-sm dropdown-toggle"
-        type="button"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
-      >
-        Small button
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Popularity</a>
-        <a class="dropdown-item" href="#">Date</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-      </div>
-    </div>
-    <span>for</span>
-    <div class="btn-group">
-      <button
-        class="btn  btn-sm dropdown-toggle"
-        type="button"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
-      >
-        Small button
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">All time</a>
-        <a class="dropdown-item" href="#">Last 24h</a>
-        <a class="dropdown-item" href="#">Past Week</a>
-      </div>
-    </div>
-  </div>
+  </ng-container>
 </div>
 
 <div class="container" class="content">
@@ -96,6 +67,14 @@
     </tr>
   </table>
 
+  <!-- <div class="pb-0 pt-3" [queryParamGroup]="paramGroup">
+    <jw-pagination
+      [items]="items"
+      ngDefaultControl
+      (changePage)="onChangePage($event)"
+    ></jw-pagination>
+  </div> -->
+
   <div *ngIf="showMessage" class="text-center">
     <div class="card">
       <div class="card-body">
@@ -107,3 +86,5 @@
     </div>
   </div>
 </div>
+
+<!-- queryParamName="page" -->

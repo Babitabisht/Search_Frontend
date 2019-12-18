@@ -5,6 +5,9 @@ import { QueryParamGroup, QueryParamBuilder } from "@ngqp/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AlgoliaAPIsService } from "../algolia-apis.service";
 import { AlgoliaResponse } from "../algolia-response";
+import { UserServiceService } from "../user-service.service";
+import { Router } from "@angular/router";
+
 @Component({
   selector: "app-search",
   templateUrl: "./search.component.html",
@@ -15,11 +18,14 @@ export class SearchComponent implements OnInit {
   public paramGroup: QueryParamGroup;
   public hitsResult: AlgoliaResponse[] = [];
   public showMessage: Boolean = false;
+  public searchedValue;
   items = [];
   constructor(
     private http: HttpClient,
     private algoService: AlgoliaAPIsService,
-    private qpb: QueryParamBuilder
+    private qpb: QueryParamBuilder,
+    private userService: UserServiceService,
+    private router: Router
   ) {
     this.paramGroup = qpb.group({
       searchText: qpb.stringParam("query", {
@@ -28,9 +34,8 @@ export class SearchComponent implements OnInit {
       type: qpb.stringParam("type", {
         debounceTime: 250
       }),
-      // page: qpb.stringParam("page", {
-      //   debounceTime: 250
-      // }),
+
+      page: qpb.numberParam("page"),
 
       showCompletedItems: qpb.booleanParam("status", {
         serialize: completed => (completed ? "completed" : null),
@@ -44,7 +49,11 @@ export class SearchComponent implements OnInit {
     this.paramGroup.valueChanges
       .pipe(
         switchMap(value =>
-          this.algoService.searchbyQuery(value.searchText, value.type)
+          this.algoService.searchbyQuery(
+            value.searchText,
+            value.type,
+            value.page
+          )
         )
       )
       .subscribe(results => {
@@ -61,11 +70,26 @@ export class SearchComponent implements OnInit {
 
     this.items = Array(150)
       .fill(0)
-      .map((x, i) => ({ id: i + 1, name: `Item ${i + 1}` }));
+      .map((x, i) => ({ id: i + 1 }));
   }
 
   onChangePage(pageOfItems: Array<any>) {
     // update current page of items
+    console.log("-------------on change----------------", pageOfItems);
     this.pageOfItems = pageOfItems;
+  }
+
+  logout() {
+    console.log("logging out");
+    this.userService.logout();
+    this.router.navigateByUrl("/users/login");
+  }
+
+  searching($event) {
+    console.log("-----------in searching----------------", $event.target.value);
+
+    this.userService.record($event.target.value).subscribe(data => {
+      console.log("-----recoed", data);
+    });
   }
 }

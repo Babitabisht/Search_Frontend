@@ -3,21 +3,25 @@
     <!-- Provide the QueryParamGroup somewhere on a parent element using queryParamGroup. -->
     <ng-container [queryParamGroup]="paramGroup">
       <!-- Use the queryParamName directive to reference a specific param of your group. -->
-      <input type="text" placeholder="Search" queryParamName="searchText" />
+      <input
+        type="text"
+        placeholder="Search"
+        queryParamName="searchText"
+        (keyup.enter)="searching($event)"
+      />
     </ng-container>
   </div>
   <div class="otherLink">
-    <a href="#home">History</a>
-    <a href="#about">Logout</a>
+    <a href="/user/history">History</a>
+    <a (click)="logout()">Logout</a>
   </div>
 </div>
-
 <div>
   <ng-container [queryParamGroup]="paramGroup">
     <div>
       <span>search</span>
       <select queryParamName="type">
-        <option value="poll">poll</option>
+        <option selected value="poll">poll</option>
         <option value="story">Stories</option>
         <option value="comment">Comments</option>
       </select>
@@ -67,13 +71,27 @@
     </tr>
   </table>
 
-  <!-- <div class="pb-0 pt-3" [queryParamGroup]="paramGroup">
-    <jw-pagination
-      [items]="items"
-      ngDefaultControl
-      (changePage)="onChangePage($event)"
-    ></jw-pagination>
-  </div> -->
+  <ng-container [queryParamGroup]="paramGroup">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        <li class="page-item"><a class="page-link">1</a></li>
+        <li class="page-item"><a class="page-link">2</a></li>
+        <li class="page-item"><a class="page-link">3</a></li>
+        <li class="page-item">
+          <a class="page-link" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </ng-container>
 
   <div *ngIf="showMessage" class="text-center">
     <div class="card">
@@ -86,5 +104,3 @@
     </div>
   </div>
 </div>
-
-<!-- queryParamName="page" -->

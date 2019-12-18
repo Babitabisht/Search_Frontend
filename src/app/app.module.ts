@@ -12,7 +12,7 @@ import { AlertComponent } from "./alert/alert.component";
 import { QueryParamModule } from "@ngqp/core";
 import { SearchComponent } from "./search/search.component";
 import { JwPaginationComponent } from "jw-angular-pagination";
-
+import { AuthGuard } from "./guards/auth.guard";
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +32,7 @@ import { JwPaginationComponent } from "jw-angular-pagination";
     HttpClientModule,
     QueryParamModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -8,16 +8,17 @@ import { AlgoliaResponse } from "../app/algolia-response";
 export class AlgoliaAPIsService {
   constructor(private http: HttpClient) {}
 
-  searchbyQuery(searchText: String, type: String) {
+  searchbyQuery(searchText: String, type: String, page: number) {
     console.log(
       "------------------------searchText-------------------",
       searchText,
-      type
+      type,
+      page
     );
 
-    // if (page == undefined || page == null) {
-    //   page = 0;
-    // }
+    if (page == undefined || page == null) {
+      page = 0;
+    }
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -28,7 +29,7 @@ export class AlgoliaAPIsService {
     console.log(appConfig.a1 + "?query=" + searchText);
 
     return this.http.get<any>(
-      appConfig.a1 + "?query=" + searchText + "&tags=" + type
+      appConfig.a1 + "?query=" + searchText + "&tags=" + type + "&page=" + page
     );
   }
 }

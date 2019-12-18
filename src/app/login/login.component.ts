@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    console.log(this.loginForm.controls.email.value);
+    //  console.log(this.loginForm.controls.email.value);.
     this.userService
       .login(
         this.loginForm.controls.email.value,
@@ -46,7 +46,9 @@ export class LoginComponent implements OnInit {
         console.log("----------data-----------", data, typeof data);
 
         if (data.success) {
-          this.router.navigateByUrl("user/dashboard");
+          localStorage.setItem("id_token", data.token);
+          localStorage.setItem("user", JSON.stringify(data.user));
+          this.router.navigateByUrl("user/search");
         } else {
           console.log("in else");
 

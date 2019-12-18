@@ -4,12 +4,18 @@ import { LoginComponent } from "./login/login.component";
 import { SignupComponent } from "./signup/signup.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { SearchComponent } from "./search/search.component";
+import { AuthGuard } from "./guards/auth.guard";
 
 const routes: Routes = [
   { path: "users/login", component: LoginComponent },
   { path: "users/signup", component: SignupComponent },
   { path: "user/dashboard", component: DashboardComponent },
-  { path: "user/search", component: SearchComponent }
+  { path: "user/search", component: SearchComponent, canActivate: [AuthGuard] },
+  {
+    path: "user/history",
+    component: DashboardComponent,
+    canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({

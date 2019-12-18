@@ -90,7 +90,7 @@ export class SearchComponent implements OnInit {
 
   logout() {
     this.userService.logout();
-    this.router.navigateByUrl("/users/login");
+    this.router.navigateByUrl("/");
   }
 
   searching($event) {

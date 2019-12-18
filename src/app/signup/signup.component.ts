@@ -42,7 +42,6 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    console.log("--clicked");
     // stop here if form is invalid
     if (this.registerForm.invalid) {
       return;
@@ -56,13 +55,9 @@ export class SignupComponent implements OnInit {
         this.registerForm.controls.confirmPassword.value
       )
       .subscribe(data => {
-        console.log("----------data-----------", data, typeof data);
-
         if (data.success) {
           this.router.navigateByUrl("/");
         } else {
-          console.log("in else");
-
           this.alertService.error(data.message);
         }
       });

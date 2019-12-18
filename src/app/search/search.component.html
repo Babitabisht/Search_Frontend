@@ -25,13 +25,13 @@
 <div class="content">
   <ng-container [queryParamGroup]="paramGroup">
     <div>
-      <span>search</span>
+      <span class="SearchFilters">search</span>
       <select queryParamName="type">
-        <option selected value="poll">poll</option>
+        <option value="poll">poll</option>
         <option value="story">Stories</option>
         <option value="comment">Comments</option>
       </select>
-      <span>By</span>
+      <span class="SearchFilters">By</span>
 
       <select queryParamName="type">
         <option value="front_page">front page Stories</option>
@@ -59,7 +59,7 @@
   <table>
     <tr *ngFor="let item of hitsResult; let i = index">
       <td *ngIf="item.author">
-        <b class="title"> {{ item.title }}</b>
+        <span class="title"> {{ item.title }} </span>
         <span>
           <a class="links" href="item.url">( {{ item.url }} )</a>
         </span>

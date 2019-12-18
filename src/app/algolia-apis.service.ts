@@ -28,9 +28,19 @@ export class AlgoliaAPIsService {
     };
     console.log(appConfig.a1 + "?query=" + searchText);
 
-    return this.http.get<any>(
-      appConfig.a1 + "?query=" + searchText + "&tags=" + type + "&page=" + page
-    );
+    if (type == null) {
+      return this.http.get<any>(appConfig.a1 + "?query=" + searchText);
+    } else {
+      return this.http.get<any>(
+        appConfig.a1 +
+          "?query=" +
+          searchText +
+          "&tags=" +
+          type +
+          "&page=" +
+          page
+      );
+    }
   }
 }
 

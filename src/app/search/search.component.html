@@ -1,11 +1,17 @@
-<div class="topnav">
+<div class="topnav SearchHeader">
+  <div class="SearchHeader_label">
+    <span> {{ navNaming }} </span>
+  </div>
+
   <div class="search-container">
     <!-- Provide the QueryParamGroup somewhere on a parent element using queryParamGroup. -->
     <ng-container [queryParamGroup]="paramGroup">
       <!-- Use the queryParamName directive to reference a specific param of your group. -->
+
       <input
         type="text"
-        placeholder="Search"
+        class="SearchInput SearchHeader"
+        placeholder="Search stories by title, url or author"
         queryParamName="searchText"
         (keyup.enter)="searching($event)"
       />
@@ -16,7 +22,7 @@
     <a (click)="logout()">Logout</a>
   </div>
 </div>
-<div>
+<div class="content">
   <ng-container [queryParamGroup]="paramGroup">
     <div>
       <span>search</span>
@@ -71,28 +77,6 @@
     </tr>
   </table>
 
-  <ng-container [queryParamGroup]="paramGroup">
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only">Previous</span>
-          </a>
-        </li>
-        <li class="page-item"><a class="page-link">1</a></li>
-        <li class="page-item"><a class="page-link">2</a></li>
-        <li class="page-item"><a class="page-link">3</a></li>
-        <li class="page-item">
-          <a class="page-link" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-            <span class="sr-only">Next</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </ng-container>
-
   <div *ngIf="showMessage" class="text-center">
     <div class="card">
       <div class="card-body">
@@ -104,3 +88,25 @@
     </div>
   </div>
 </div>
+
+<ng-container [queryParamGroup]="paramGroup">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        </a>
+      </li>
+      <li class="page-item"><a class="page-link">1</a></li>
+      <li class="page-item"><a class="page-link">2</a></li>
+      <li class="page-item"><a class="page-link">3</a></li>
+      <li class="page-item">
+        <a class="page-link" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Next</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</ng-container>

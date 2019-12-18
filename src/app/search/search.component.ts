@@ -7,6 +7,7 @@ import { AlgoliaAPIsService } from "../algolia-apis.service";
 import { AlgoliaResponse } from "../algolia-response";
 import { UserServiceService } from "../user-service.service";
 import { Router } from "@angular/router";
+import { AuthGuard } from "../guards/auth.guard";
 
 @Component({
   selector: "app-search",
@@ -19,13 +20,16 @@ export class SearchComponent implements OnInit {
   public hitsResult: AlgoliaResponse[] = [];
   public showMessage: Boolean = false;
   public searchedValue;
+  public navNaming;
+  public showNavNaming: boolean = true;
   items = [];
   constructor(
     private http: HttpClient,
     private algoService: AlgoliaAPIsService,
     private qpb: QueryParamBuilder,
     private userService: UserServiceService,
-    private router: Router
+    private router: Router,
+    private guard: AuthGuard
   ) {
     this.paramGroup = qpb.group({
       searchText: qpb.stringParam("query", {
@@ -71,6 +75,14 @@ export class SearchComponent implements OnInit {
     this.items = Array(150)
       .fill(0)
       .map((x, i) => ({ id: i + 1 }));
+
+    if (this.guard.canActivate) {
+      this.navNaming = JSON.parse(localStorage.getItem("user")).username;
+      this.showNavNaming = false;
+    } else {
+      this.navNaming = "";
+      this.showNavNaming = true;
+    }
   }
 
   onChangePage(pageOfItems: Array<any>) {

@@ -52,9 +52,27 @@
   background-color: #f6f6ef;
 }
 
+.SearchHeader_label {
+  color: #000;
+  font-size: 18px;
+  line-height: 3;
+  float: left;
+  padding-left: 4px;
+}
 .title {
   font-family: Verdana, Geneva, sans-serif;
   font-size: 14px;
+}
+
+.SearchHeader .SearchInput {
+  border-radius: 0;
+  border: none;
+  height: 42px;
+  width: 100%;
+  box-shadow: none;
+  padding: 16px 144px 16px 54px;
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.75);
 }
 
 .details {
@@ -73,10 +91,11 @@
 /* Style the input field inside the navbar */
 .topnav input[type="text"] {
   padding: 6px;
-  margin-top: 8px;
+  margin-top: 5px;
   font-size: 17px;
   border: none;
-  width: 650px;
+  width: 775px;
+  margin-bottom: 5px;
 }
 
 /* Style the button inside the input container */

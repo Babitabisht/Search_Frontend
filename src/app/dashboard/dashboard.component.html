@@ -1,5 +1,29 @@
 <div class="container">
-  <div *ngFor="let h of history">
-  
+  <div class="topnav">
+    <div class="search-container">
+      <!-- Provide the QueryParamGroup somewhere on a parent element using queryParamGroup. -->
+    </div>
+    <div class="otherLink">
+      <a (click)="goBack()">
+        <span> <span>&larr;</span> <b> Back</b> </span>
+      </a>
+    </div>
   </div>
+
+  <table class="table ">
+    <thead>
+      <tr>
+        <th scope="col">Sr. No</th>
+        <th scope="col">Searched Item</th>
+        <th scope="col">Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let h of history; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ h.searchItem }}</td>
+        <td>{{ h.date | date: "dd/MM/yyyy   h:mm a" }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

@@ -59,11 +59,11 @@ export class SignupComponent implements OnInit {
         console.log("----------data-----------", data, typeof data);
 
         if (data.success) {
-          this.router.navigateByUrl("users/login");
+          this.router.navigateByUrl("/");
         } else {
           console.log("in else");
 
-          this.alertService.error(data.message as string);
+          this.alertService.error(data.message);
         }
       });
   }

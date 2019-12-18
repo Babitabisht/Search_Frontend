@@ -7,9 +7,8 @@ import { SearchComponent } from "./search/search.component";
 import { AuthGuard } from "./guards/auth.guard";
 
 const routes: Routes = [
-  { path: "users/login", component: LoginComponent },
-  { path: "users/signup", component: SignupComponent },
-  { path: "user/dashboard", component: DashboardComponent },
+  { path: "", component: LoginComponent },
+  { path: "signup", component: SignupComponent },
   { path: "user/search", component: SearchComponent, canActivate: [AuthGuard] },
   {
     path: "user/history",

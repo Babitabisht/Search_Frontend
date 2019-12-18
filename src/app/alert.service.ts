@@ -40,7 +40,7 @@ export class AlertService {
   }
 
   error(message: string) {
-    console.log(AlertType.Error);
+    console.log(AlertType.Error, message);
     this.alert(new Alert({ message, type: AlertType.Error }));
   }
 
@@ -54,6 +54,8 @@ export class AlertService {
 
   // main alert method
   alert(alert: Alert) {
+    console.log("----------alert------------", alert);
+
     this.keepAfterRouteChange = alert.keepAfterRouteChange;
     this.subject.next(alert);
   }

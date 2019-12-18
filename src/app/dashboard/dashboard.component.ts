@@ -15,7 +15,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getHistory().subscribe(data => {
-      console.log("-------in init of history-------", data);
       this.history = data.message;
     });
   }

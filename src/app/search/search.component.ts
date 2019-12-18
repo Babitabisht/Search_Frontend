@@ -68,8 +68,6 @@ export class SearchComponent implements OnInit {
         } else {
           this.showMessage = true;
         }
-
-        console.log("---results----", results.hits);
       });
 
     this.items = Array(150)
@@ -87,21 +85,15 @@ export class SearchComponent implements OnInit {
 
   onChangePage(pageOfItems: Array<any>) {
     // update current page of items
-    console.log("-------------on change----------------", pageOfItems);
     this.pageOfItems = pageOfItems;
   }
 
   logout() {
-    console.log("logging out");
     this.userService.logout();
     this.router.navigateByUrl("/users/login");
   }
 
   searching($event) {
-    console.log("-----------in searching----------------", $event.target.value);
-
-    this.userService.record($event.target.value).subscribe(data => {
-      console.log("-----recoed", data);
-    });
+    this.userService.record($event.target.value).subscribe(data => {});
   }
 }

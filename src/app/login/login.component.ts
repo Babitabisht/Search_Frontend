@@ -36,23 +36,20 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    //  console.log(this.loginForm.controls.email.value);.
+
     this.userService
       .login(
         this.loginForm.controls.email.value,
         this.loginForm.controls.password.value
       )
       .subscribe(data => {
-        console.log("----------data-----------", data, typeof data);
 
         if (data.success) {
           localStorage.setItem("id_token", data.token);
           localStorage.setItem("user", JSON.stringify(data.user));
           this.router.navigateByUrl("user/search");
         } else {
-          console.log("in else");
-
-          this.alertService.error(data.message as string);
+          this.alertService.error(data.message);
         }
       });
   }

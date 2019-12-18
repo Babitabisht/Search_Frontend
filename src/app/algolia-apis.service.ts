@@ -9,13 +9,6 @@ export class AlgoliaAPIsService {
   constructor(private http: HttpClient) {}
 
   searchbyQuery(searchText: String, type: String, page: number) {
-    console.log(
-      "------------------------searchText-------------------",
-      searchText,
-      type,
-      page
-    );
-
     if (page == undefined || page == null) {
       page = 0;
     }
@@ -26,7 +19,6 @@ export class AlgoliaAPIsService {
         //  'Authorization': 'Bearer ' + this.getUser().token
       })
     };
-    console.log(appConfig.a1 + "?query=" + searchText);
 
     if (type == null) {
       return this.http.get<any>(appConfig.a1 + "?query=" + searchText);

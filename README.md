@@ -40,6 +40,8 @@
 #### Frontend
 
 1. Angular 7 is used as Frontend framework
+1. Reactive Forms are used
+1. Bootstrap along with custom css is used
 
 #### Screenshots
 
